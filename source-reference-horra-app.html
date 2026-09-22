@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Horra — Say it perfectly, every time.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a19;
+    --blush:#fdf0ed;
+    --blush-2:#fbe2db;
+    --card:#fffaf7;
+    --sun:#ff7a45;
+    --rose:#ec2f7b;
+    --gradient: linear-gradient(135deg, var(--sun), var(--rose));
+    --rule:#f0d9cf;
+    --serif:'Fraunces', Georgia, serif;
+    --wordmark:'Poppins', var(--serif);
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --bg: var(--blush);
+    --fg: var(--ink);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#161213; --fg:#f3e9e5; --card:#211c1d; --rule:#3a2c2c; --blush-2:#241c1d;
+    }
+  }
+  :root[data-theme="dark"]{ --bg:#161213; --fg:#f3e9e5; --card:#211c1d; --rule:#3a2c2c; --blush-2:#241c1d; }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+  body{margin:0; min-height:100%; background:var(--bg); color:var(--fg); font-family:var(--sans); line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;} img{max-width:100%;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* HEADER */
+  header.site{background:var(--ink); color:#f7efe9; position:sticky; top:env(safe-area-inset-top,0px); z-index:20;}
+  header.site .bar{display:flex; align-items:center; justify-content:space-between; padding:20px 0;}
+  .burger{display:flex; flex-direction:column; gap:5px; width:22px; cursor:pointer; background:none; border:none;}
+  .burger span{height:2px; background:#f7efe9; display:block;}
+  .wordmark{font-family:var(--wordmark); font-weight:700; font-size:1.3rem; letter-spacing:0.01em;}
+  nav.top{display:flex; align-items:center; gap:28px;}
+  nav.top a{font-size:0.92rem; text-decoration:none; color:#f7efe9; opacity:0.85; cursor:pointer;}
+  nav.top a:hover{opacity:1;}
+  .btn{display:inline-block; padding:12px 24px; border-radius:100px; font-size:0.9rem; font-weight:600; text-decoration:none; cursor:pointer; border:none; font-family:var(--sans);}
+  .btn.grad{background:var(--gradient); color:#fff;}
+  .btn.outline{border:1px solid #f7efe9; color:#f7efe9; background:transparent; padding:11px 23px;}
+  @media (max-width:720px){ nav.top a{display:none;} }
+
+  /* HERO */
+  .hero{padding:76px 0 56px;}
+  .hero .wrap{display:grid; grid-template-columns:1.1fr 0.9fr; gap:52px; align-items:center;}
+  .eyebrow{font-family:var(--serif); font-style:italic; color:var(--rose); font-size:0.95rem; margin:0 0 16px;}
+  .hero h1{font-family:var(--serif); font-weight:600; font-size:clamp(2.1rem,4.4vw,3.2rem); line-height:1.12; margin:0 0 22px; max-width:14ch;}
+  .hero p.lede{font-size:1.1rem; opacity:0.82; max-width:44ch; margin:0 0 30px;}
+  .cta-row{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .cta-row .note{font-size:0.82rem; opacity:0.6;}
+  .hero-panel{
+    background:var(--gradient); border-radius:28px; padding:38px 32px; color:#fff;
+    min-height:360px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .hero-panel .tag{font-size:0.8rem; opacity:0.85; letter-spacing:0.02em;}
+  .hero-panel .quote{font-family:var(--serif); font-size:1.35rem; line-height:1.35; margin:18px 0;}
+  .hero-panel .who{font-size:0.85rem; opacity:0.9;}
+
+  /* STATS STRIP */
+  .stats{background:var(--card); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);}
+  .stats .wrap{display:flex; gap:0; padding:22px 0;}
+  .stats .stat{flex:1; text-align:center; padding:0 12px;}
+  .stats .stat + .stat{border-left:1px solid var(--rule);}
+  .stats .num{font-family:var(--serif); font-weight:600; font-size:1.5rem; color:var(--rose);}
+  .stats .label{font-size:0.78rem; opacity:0.65; margin-top:2px;}
+
+  /* HOW IT WORKS */
+  section.how{padding:76px 0 60px;}
+  .section-head{max-width:56ch; margin-bottom:44px;}
+  .section-head .label{font-family:var(--serif); font-style:italic; color:var(--rose); font-size:0.95rem; margin:0 0 10px;}
+  .section-head h2{font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,2.6vw,2rem); margin:0;}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .step{background:var(--card); border:1px solid var(--rule); border-radius:20px; padding:28px 24px;}
+  .step .n{font-family:var(--serif); font-size:0.85rem; color:var(--rose); margin-bottom:14px;}
+  .step h3{font-family:var(--serif); font-weight:600; font-size:1.1rem; margin:0 0 10px;}
+  .step p{margin:0; opacity:0.8; font-size:0.95rem;}
+  @media (max-width:780px){ .steps{grid-template-columns:1fr;} .hero .wrap{grid-template-columns:1fr;} }
+
+  /* OCCASIONS */
+  section.occasions{padding:60px 0; background:var(--blush-2);}
+  .occ-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .occ{background:var(--card); border-radius:16px; padding:20px; border:1px solid var(--rule);}
+  .occ h4{font-family:var(--serif); font-weight:600; margin:0 0 4px; font-size:1.02rem;}
+  .occ p{margin:0; font-size:0.85rem; opacity:0.65;}
+  @media (max-width:780px){ .occ-grid{grid-template-columns:1fr 1fr;} }
+
+  /* TESTIMONIALS */
+  section.testimonials{padding:70px 0;}
+  .test-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .test{border-top:2px solid var(--rose); padding-top:16px;}
+  .test p{font-family:var(--serif); font-size:1.05rem; line-height:1.4; margin:0 0 14px;}
+  .test .who{font-size:0.85rem; opacity:0.7;}
+  @media (max-width:780px){ .test-grid{grid-template-columns:1fr;} }
+
+  /* FINAL CTA */
+  section.final{padding:70px 0 84px; text-align:center;}
+  section.final h2{font-family:var(--serif); font-weight:600; font-size:clamp(1.6rem,3vw,2.2rem); max-width:20ch; margin:0 auto 26px;}
+
+  footer.site{background:var(--ink); color:#f7efe9;}
+  footer.site .wrap{padding:46px 0 36px;}
+  .foot-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:30px; border-bottom:1px solid rgba(247,239,233,0.15);}
+  .foot-top .wordmark{color:#f7efe9;}
+  .foot-top p{opacity:0.65; max-width:32ch; font-size:0.9rem; margin:10px 0 0;}
+  .foot-links{display:flex; gap:48px; flex-wrap:wrap;}
+  .foot-links div{font-size:0.85rem;}
+  .foot-links .h{opacity:0.5; font-size:0.75rem; margin-bottom:10px;}
+  .foot-links a{display:block; text-decoration:none; opacity:0.85; margin-bottom:8px; cursor:pointer;}
+  .foot-links a:hover{opacity:1;}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding-top:22px; font-size:0.78rem; opacity:0.55;}
+
+  /* PRIVACY VIEW */
+  .privacy{padding:70px 0 90px; max-width:760px; margin:0 auto;}
+  .privacy h1{font-family:var(--serif); font-weight:600; font-size:clamp(1.8rem,3.6vw,2.4rem); margin:0 0 8px;}
+  .privacy .updated{opacity:0.6; font-size:0.9rem; margin:0 0 36px;}
+  .privacy .callout{background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:18px 20px; font-size:0.95rem; margin-bottom:30px;}
+  .privacy h2{font-family:var(--serif); font-weight:600; font-size:1.2rem; margin:36px 0 12px;}
+  .privacy p, .privacy li{opacity:0.85; margin:0 0 12px;}
+  .privacy ul{padding-left:20px;}
+
+  [data-view="privacy"] #view-home, [data-view="home"] #view-privacy{display:none;}
+</style>
+</head>
+<body data-view="home" id="root">
+
+<header class="site">
+  <div class="wrap bar">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="wordmark">Horra</div>
+    </div>
+    <nav class="top">
+      <a onclick="setView('home')">How it works</a>
+      <a href="#occasions">Occasions</a>
+      <a onclick="setView('privacy')">Privacy Policy</a>
+    </nav>
+    <a class="btn grad">Get Started</a>
+  </div>
+</header>
+
+<main id="view-home">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">AI-powered · Free to start</p>
+        <h1>Say it perfectly, every time.</h1>
+        <p class="lede">Pick who it's for and what the occasion is. Horra writes a message that actually sounds like you — then sends it straight to WhatsApp.</p>
+        <div class="cta-row">
+          <a class="btn grad">Get Started</a>
+          <span class="note">No account needed · Works instantly</span>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <span class="tag">BIRTHDAY · FOR SARAH</span>
+        <p class="quote">"On this special day, I find myself thinking of all the moments that have shaped who I am — and you're woven through so many of them."</p>
+        <span class="who">— Written by Horra, sent by Alex</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><div class="num">240k+</div><div class="label">Downloads</div></div>
+      <div class="stat"><div class="num">4.9★</div><div class="label">Rating</div></div>
+      <div class="stat"><div class="num">1.2M+</div><div class="label">Messages sent</div></div>
+    </div>
+  </div>
+
+  <section class="how">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">How it works</p>
+        <h2>Three steps between you and the right words.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Who's it for</h3>
+          <p>Add a name, or import straight from your contacts. Tell Horra your relationship and it shapes the tone.</p>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>What's the occasion</h3>
+          <p>Birthday, anniversary, a local or global holiday, a milestone — even a funny nudge with no occasion at all.</p>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>Send it on WhatsApp</h3>
+          <p>Horra writes the message in the tone you pick — warm, short, formal, playful. Regenerate if it's not quite right, then send.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="occasions" id="occasions">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Occasions</p>
+        <h2>Built for the moments people actually forget.</h2>
+      </div>
+      <div class="occ-grid">
+        <div class="occ"><h4>Local holidays</h4><p>Your country's dates</p></div>
+        <div class="occ"><h4>Global holidays</h4><p>Universal occasions</p></div>
+        <div class="occ"><h4>Anniversaries</h4><p>Birthdays, weddings…</p></div>
+        <div class="occ"><h4>Motivational</h4><p>Inspire &amp; uplift</p></div>
+        <div class="occ"><h4>Constellation</h4><p>Star sign greetings</p></div>
+        <div class="occ"><h4>Funny</h4><p>Light &amp; playful</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Trusted worldwide</p>
+        <h2>Real people, real moments.</h2>
+      </div>
+      <div class="test-grid">
+        <div class="test">
+          <p>"Sent my mum the most beautiful Eid message. She actually cried."</p>
+          <div class="who">Layla M. — Eid al-Fitr</div>
+        </div>
+        <div class="test">
+          <p>"Remembered my dad's anniversary when I completely forgot. Lifesaver."</p>
+          <div class="who">James T. — Anniversary</div>
+        </div>
+        <div class="test">
+          <p>"The messages feel real, not AI-generated. Truly impressive."</p>
+          <div class="who">Priya K. — Birthday</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <h2>The right words, right on time.</h2>
+      <a class="btn grad">Get Started free</a>
+    </div>
+  </section>
+
+</main>
+
+<main id="view-privacy">
+  <div class="wrap privacy">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Effective March 23, 2026 · Last updated September 22, 2026</p>
+
+    <div class="callout">Horra is a message-writing app. It helps you compose a personalized message and hand it off to WhatsApp to send. Horra does not host chats, deliver messages on your behalf, or store the conversation that follows.</div>
+
+    <p>This policy explains what Horra, a product of Amonrau Global LLC ("Amonrau Global," "we," "us," or "our"), collects when you use the app, how it's used, and the choices available to you.</p>
+
+    <h2>Information we collect</h2>
+    <ul>
+      <li><strong>Recipient details</strong> — the name, phone number, and relationship you enter, or import from your device contacts with your permission, to personalize a message.</li>
+      <li><strong>Sender details</strong> — your name and, for reminders, the occasions and dates you save.</li>
+      <li><strong>Message inputs</strong> — the occasion, tone (warm, short, formal, playful), and any details you add, which are used to generate the message text.</li>
+      <li><strong>Location &amp; language</strong> — your selected country and language, used to surface relevant local and global holidays.</li>
+      <li><strong>Usage information</strong> — basic technical data such as device type and app interactions, collected to keep the app working and secure.</li>
+    </ul>
+
+    <h2>Contacts access</h2>
+    <p>Importing a contact is optional. If you grant access, Horra reads the selected contact's name and number to fill in the recipient fields — it does not scan or upload your full address book.</p>
+
+    <h2>How messages are generated and sent</h2>
+    <p>The details you provide are processed by our AI systems to draft a message. When you tap send, Horra hands the message and recipient to WhatsApp through its standard share function — Horra does not access your WhatsApp account, read your WhatsApp messages, or store what happens after the message is sent. Horra is not affiliated with WhatsApp Inc. or Meta Platforms, Inc.</p>
+
+    <h2>Reminders</h2>
+    <p>If you save a reminder for a future occasion, we store the recipient, occasion, and date so we can prompt you when it's coming up.</p>
+
+    <h2>How we use this information</h2>
+    <ul>
+      <li>To generate and personalize messages</li>
+      <li>To surface relevant occasions and reminders</li>
+      <li>To operate, secure, and improve the app</li>
+      <li>To meet legal and regulatory obligations</li>
+    </ul>
+
+    <h2>How we share information</h2>
+    <p>We do not sell personal information. We share it only with service providers that support core functions (such as AI message generation and app hosting), or where required by law.</p>
+
+    <h2>Data retention</h2>
+    <p>We keep recipient and message details only as long as needed to provide the app's features, such as active reminders, or as required by law.</p>
+
+    <h2>Security</h2>
+    <p>We use reasonable administrative and technical safeguards to protect your information. No method of transmission or storage is completely secure.</p>
+
+    <h2>Your rights</h2>
+    <p>Depending on your location, you may have rights to access, correct, or delete your information, or to withdraw contacts permission at any time in your device settings. Contact us using the details below to make a request.</p>
+
+    <h2>Children's privacy</h2>
+    <p>Horra is not directed to children under 13, and we do not knowingly collect information from them.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy from time to time. The "last updated" date above reflects the most recent revision.</p>
+
+    <h2>Contact us</h2>
+    <p>Amonrau Global LLC<br>
+    State of New Mexico, USA<br>
+    Email: privacy@horraapp.com</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="wordmark">Horra</div>
+        <p>The right words, right on time — written for you, sent on WhatsApp.</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <div class="h">Product</div>
+          <a onclick="setView('home')">How it works</a>
+          <a href="#occasions">Occasions</a>
+        </div>
+        <div>
+          <div class="h">Company</div>
+          <a onclick="setView('privacy')">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Amonrau Global LLC. Horra is a product of Amonrau Global LLC, a Domestic LLC registered in New Mexico (Reg. 0008090717).</span>
+      <span>Not affiliated with WhatsApp Inc. or Meta Platforms, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setView(v){
+    document.getElementById('root').setAttribute('data-view', v);
+    window.scrollTo({top:0, behavior:'instant'});
+    history.replaceState(null,'', v === 'privacy' ? '#privacy' : '#');
+  }
+  if(location.hash === '#privacy'){ setView('privacy'); }
+</script>
+
+</body>
+</html>
