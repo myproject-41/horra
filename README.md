@@ -13,7 +13,9 @@ This package is a static, production-oriented Horra landing site built from the 
 ## Files
 - `index.html` — full landing page
 - `about.html` — About Horra
-- `privacy.html` — Privacy Policy
+- `privacy.html` — redirects to the Privacy Policy document
+- `PRIVACY POLICY.docx` — Privacy Policy
+- `app/index.html` — Horra app page and its supporting pages/assets
 - `terms.html` — Terms & Conditions
 - `styles.css` — main design system
 - `legal.css` — legal-page styles

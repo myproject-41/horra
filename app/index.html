@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Horra helps you send thoughtful messages for every meaningful moment.">
+  <title>Horra | Real people, real moments.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #101327;
+      --muted: #697080;
+      --paper: #fffaf8;
+      --peach: #fff0ec;
+      --pink: #ff3b72;
+      --coral: #ff7255;
+      --orange: #ffae31;
+      --line: rgba(16, 19, 39, .09);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 20; background: var(--ink); color: #fff; padding: .7rem 1rem; border-radius: 8px; }
+    .skip-link:focus { top: 1rem; }
+    .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { margin: 0 0 12px; color: #8c909c; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .section-title { margin: 0; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 4rem); line-height: .98; letter-spacing: -.03em; }
+    .gradient-text { color: var(--pink); background: linear-gradient(90deg, var(--pink), var(--orange)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: 14px; border: 0; border-radius: 999px; padding: 0 30px; color: #fff; background: linear-gradient(100deg, var(--pink), var(--orange)); box-shadow: 0 12px 26px rgba(255, 72, 105, .22); font-weight: 700; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(255, 72, 105, .28); }
+    .button:focus-visible, .nav a:focus-visible, .mobile-menu:focus-visible { outline: 3px solid #111; outline-offset: 4px; }
+
+    .hero { position: relative; overflow: hidden; background: var(--peach); }
+    .hero picture { display: block; }
+    .hero-art { width: 100%; height: auto; }
+    .hero-content { position: absolute; inset: 0; z-index: 1; padding-top: 1px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+    .logo { width: 100px; height: auto; }
+    .mobile-logo, .mobile-menu { display: none; }
+    .nav-links { display: flex; gap: 34px; margin-left: 140px; color: #3f414d; font-size: .9rem; }
+    .nav-links a { padding: 8px 0; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { border-color: var(--pink); }
+    .nav .button { min-height: 44px; margin-left: auto; padding: 0 24px; font-size: .86rem; }
+    .hero-hotspot { position: absolute; left: 3%; top: 62%; width: 35%; height: 20%; }
+
+    .features { padding: 86px 0 96px; background: #fff; }
+    .section-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2rem; margin-bottom: 40px; }
+    .section-heading p { max-width: 400px; margin: 14px 0 0; color: var(--muted); line-height: 1.55; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .feature-card { min-height: 224px; padding: 26px 22px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, #fff, #fffaf9); box-shadow: 0 12px 28px rgba(45, 24, 41, .04); transition: transform .25s ease, box-shadow .25s ease; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 18px 30px rgba(45, 24, 41, .1); }
+    .feature-icon { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 22px; border-radius: 50%; color: var(--pink); background: #ffe7ee; font-size: 1.3rem; }
+    .feature-card:nth-child(2) .feature-icon { color: #2179dc; background: #e2f0ff; }
+    .feature-card:nth-child(3) .feature-icon { color: #ed8d38; background: #fff0dc; }
+    .feature-card:nth-child(4) .feature-icon { color: var(--pink); background: #ffe5ed; }
+    .feature-card h3 { margin: 0 0 9px; font-size: 1.05rem; line-height: 1.15; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: .87rem; line-height: 1.5; }
+
+    .image-section { overflow: hidden; background: var(--peach); }
+    .image-section img { width: 100%; height: auto; }
+    .stories { padding: 82px 0 88px; background: #fff; }
+    .stories-header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 28px; }
+    .stories-header p { margin: 10px 0 0; color: var(--muted); }
+    .carousel-viewport { overflow: hidden; }
+    .carousel-track { display: flex; gap: 18px; transition: transform .7s cubic-bezier(.22, .75, .25, 1); }
+    .quote-card { flex: 0 0 100%; min-height: 172px; padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 10px 24px rgba(45, 24, 41, .05); }
+    .quote-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .avatar { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #19203d, #ff7280); font-weight: 700; }
+    .quote-meta strong { display: block; font-size: .87rem; }
+    .quote-meta span { color: var(--pink); font-size: .72rem; }
+    .stars { margin-left: auto; color: #ffb000; letter-spacing: 1px; font-size: .78rem; }
+    .quote-card blockquote { margin: 0; color: #555b68; font-family: var(--serif); font-size: 1rem; line-height: 1.4; }
+    .carousel-status { margin-top: 22px; color: #9296a0; font-size: .78rem; text-align: center; }
+
+    .download { padding: 0 0 44px; background: #fff; }
+    .download img { width: 100%; border-radius: 22px; }
+    footer { padding: 46px 0 24px; background: #fff; border-top: 1px solid var(--line); }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 24px; }
+    .footer-grid h3 { margin: 0 0 14px; font-size: .88rem; }
+    .footer-grid a, .footer-grid p { display: block; margin: 0 0 10px; color: var(--muted); font-size: .82rem; }
+    .footer-brand { justify-self: end; text-align: right; }
+    .footer-brand .logo { width: 90px; margin: 0 0 18px auto; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); color: #a0a1a9; font-size: .75rem; }
+
+    @media (max-width: 900px) {
+      .hero-hotspot { left: 4%; top: 68%; width: 48%; height: 20%; }
+      .nav-links { margin-left: 0; gap: 17px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 32px, 500px); }
+      .nav { align-items: flex-start; }
+      .mobile-logo { display: block; flex: 0 0 82px; width: 82px; margin-top: 7px; transform: translateY(-22px); }
+      .mobile-menu { width: 42px; height: 42px; flex: 0 0 42px; display: grid; place-content: center; gap: 6px; margin-left: 12px; border: 0; border-radius: 50%; color: var(--ink); background: rgba(255, 255, 255, .8); cursor: pointer; transform: translateY(-22px); }
+      .mobile-menu span { display: block; width: 20px; height: 2px; border-radius: 2px; background: currentColor; }
+      .nav-links { position: absolute; top: 76px; left: 0; right: 0; display: none; flex-direction: column; gap: 0; margin: 0; padding: 8px 18px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, .96); box-shadow: 0 12px 28px rgba(45, 24, 41, .12); font-size: .86rem; }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .nav-links a:last-child { border-bottom: 0; }
+      .nav .button { min-height: 38px; padding: 0 15px; font-size: .74rem; }
+      .hero-hotspot { left: 5%; top: 70%; width: 62%; height: 19%; }
+      .features { padding: 64px 0; }
+      .section-heading { grid-template-columns: minmax(0, 1fr) auto; gap: 14px; margin-bottom: 28px; }
+      .section-heading .button { justify-self: end; width: 145px; min-height: 44px; padding: 0 8px; font-size: .68rem; white-space: nowrap; }
+      .features-grid { display: flex; overflow-x: auto; gap: 14px; margin-right: -16px; padding: 4px 16px 18px 0; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+      .feature-card { flex: 0 0 min(78vw, 280px); min-height: 220px; scroll-snap-align: start; }
+      .stories-header { display: block; }
+      .download { padding: 0 16px 30px; }
+      .download img { border-radius: 14px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; justify-self: start; text-align: left; }
+      .footer-brand .logo { margin-left: 0; }
+      .footer-bottom { display: block; }
+      .footer-bottom p { margin: 8px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="hero" id="home">
+    <img class="hero-art" src="assets/reakk.png"Friends smiling together beside the Horra messaging app">
+    <div class="container hero-content">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="mobile-logo" href="#home" aria-label="Horra home"><img class="logo" src="assets/horra-wordmark-dark.png" alt="Horra"></a>
+        <div class="nav-links" id="mobile-navigation">
+          <a href="#home" aria-current="page">Home</a><a href="#features">Features</a><a href="#stories">Reviews</a><a href="#download">Download</a>
+        </div>
+        <button class="mobile-menu" type="button" aria-label="Open menu" aria-controls="mobile-navigation" aria-expanded="false"><span></span><span></span></button>
+        <a class="button" href="#download">Get the App</a>
+      </nav>
+      <a class="hero-hotspot" href="#download" aria-label="Get started with Horra"></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Features</p><h1 class="section-title" id="features-title">More than just<br><span class="gradient-text">messages</span></h1><p>Thoughtful features to help you stay close to the people who matter.</p></div>
+          <a class="button" href="#download">Explore All Features <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">◌</div><h3>AI-Powered<br>Suggestions</h3><p>Get the perfect message for any occasion in seconds.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">◎</div><h3>Worldwide<br>Holidays</h3><p>Find relevant holidays based on your country.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">文</div><h3>Multiple<br>Languages</h3><p>Send messages in 10+ languages.</p></article>
+          <article class="feature-card"><div class="feature-icon" aria-hidden="true">♡</div><h3>Personal &amp;<br>Meaningful</h3><p>Messages that feel real and heartfelt.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-section" aria-label="How Horra works">
+      <img src="assets/real%20horra%20s.png" alt="Horra makes sending thoughtful messages easy in three steps" loading="lazy">
+    </section>
+
+    <section class="stories" id="stories" aria-labelledby="stories-title">
+      <div class="container">
+        <div class="stories-header"><div><p class="eyebrow">Real stories</p><h2 class="section-title" id="stories-title">What <span class="gradient-text">our users say</span></h2><p>Join thousands of happy users around the world.</p></div></div>
+        <div class="carousel-viewport" role="region" aria-roledescription="carousel" aria-label="User reviews">
+          <div class="carousel-track" id="track">
+            <article class="quote-card" role="group" aria-label="Review 1 of 20"><div class="quote-meta"><div class="avatar">L</div><div><strong>Layla M.</strong><span>Eid al-Fitr</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Sent my mum the most beautiful Eid message. She actually cried.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 2 of 20"><div class="quote-meta"><div class="avatar">J</div><div><strong>James T.</strong><span>Anniversary</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Remembered my dad’s anniversary when I completely forgot. Lifesaver.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 3 of 20"><div class="quote-meta"><div class="avatar">P</div><div><strong>Priya K.</strong><span>Birthday</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“The messages feel real, not AI-generated. Truly impressive.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 4 of 20"><div class="quote-meta"><div class="avatar">A</div><div><strong>Amelia R.</strong><span>Thank you</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“It helped me say exactly what I was feeling in the sweetest way.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 5 of 20"><div class="quote-meta"><div class="avatar">D</div><div><strong>Daniel K.</strong><span>Father's Day</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“A thoughtful message was ready before my coffee even cooled down.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 6 of 20"><div class="quote-meta"><div class="avatar">S</div><div><strong>Sofia N.</strong><span>Good luck</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“My best friend felt so supported before her big interview.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 7 of 20"><div class="quote-meta"><div class="avatar">M</div><div><strong>Marcus B.</strong><span>Congratulations</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“The perfect words for a moment I never wanted to rush.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 8 of 20"><div class="quote-meta"><div class="avatar">N</div><div><strong>Nora E.</strong><span>New baby</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Everyone loved the message. It felt personal from the first line.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 9 of 20"><div class="quote-meta"><div class="avatar">R</div><div><strong>Ravi P.</strong><span>Diwali</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Horra made sending warm wishes to family abroad feel effortless.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 10 of 20"><div class="quote-meta"><div class="avatar">C</div><div><strong>Clara W.</strong><span>Get well soon</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“A little message made a hard week feel much lighter.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 11 of 20"><div class="quote-meta"><div class="avatar">E</div><div><strong>Elena G.</strong><span>Mother's Day</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“It captured our relationship so beautifully. Mum loved it.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 12 of 20"><div class="quote-meta"><div class="avatar">T</div><div><strong>Theo H.</strong><span>Birthday</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“No blank-screen panic this year. I sent something genuinely warm.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 13 of 20"><div class="quote-meta"><div class="avatar">Y</div><div><strong>Yara F.</strong><span>Ramadan</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“The multilingual suggestions made family messages so much easier.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 14 of 20"><div class="quote-meta"><div class="avatar">O</div><div><strong>Owen C.</strong><span>Thank you</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Simple, quick, and somehow still very much like me.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 15 of 20"><div class="quote-meta"><div class="avatar">I</div><div><strong>Isla J.</strong><span>Friendship</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“I sent a small note just because. Those are often the best ones.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 16 of 20"><div class="quote-meta"><div class="avatar">K</div><div><strong>Kenji S.</strong><span>New Year</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“It helped me share a fresh start with friends around the world.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 17 of 20"><div class="quote-meta"><div class="avatar">F</div><div><strong>Fatima A.</strong><span>Graduation</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“The message was heartfelt, polished, and ready in seconds.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 18 of 20"><div class="quote-meta"><div class="avatar">B</div><div><strong>Ben L.</strong><span>Anniversary</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“A beautiful reminder to celebrate the people who matter most.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 19 of 20"><div class="quote-meta"><div class="avatar">H</div><div><strong>Hana Q.</strong><span>Celebration</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“The tone was exactly right and the whole family smiled.”</blockquote></article>
+            <article class="quote-card" role="group" aria-label="Review 20 of 20"><div class="quote-meta"><div class="avatar">G</div><div><strong>Grace V.</strong><span>Just because</span></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div><blockquote>“Sometimes the smallest message creates the biggest connection.”</blockquote></article>
+          </div>
+        </div>
+        <p class="carousel-status" id="carousel-status" aria-live="polite">Showing all reviews</p>
+      </div>
+    </section>
+
+    <section class="download" id="download" aria-label="Download Horra">
+      <div class="container"><a href="#home" aria-label="Download Horra"><img src="assets/real%20horra%20t.png" alt="Start spreading happiness today with Horra on the App Store and Google Play" loading="lazy"></a></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid"><div><h3>Product</h3><a href="#features">Features</a><a href="#download">Download</a><a href="../PRIVACY%20POLICY.docx" target="_blank" rel="noopener">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div><div><h3>Support</h3><a href="#home">Help Center</a><a href="contact.html">Contact Us</a><a href="#home">FAQ</a></div><div><h3>Company</h3><a href="#home">About</a><a href="#stories">Blog</a><a href="#home">Careers</a></div><div class="footer-brand"><img class="logo" src="assets/horra-wordmark-dark.png" alt="Horra"><p>Small messages. Big connections. ♡</p></div></div>
+      <div class="footer-bottom"><span>© 2026. All rights reserved.Amonrau Global LLC - Horra</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.mobile-menu');
+    const navigation = document.querySelector('#mobile-navigation');
+    const track = document.querySelector('#track');
+    const cards = [...document.querySelectorAll('.quote-card')];
+    const status = document.querySelector('#carousel-status');
+    let index = 0;
+    let timer;
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+    navigation.addEventListener('click', () => {
+      navigation.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
+    });
+
+    function visibleCards() { return 1; }
+    function moveCarousel(nextIndex) {
+      const visible = visibleCards();
+      const max = Math.max(0, cards.length - visible);
+      index = Math.min(Math.max(nextIndex, 0), max);
+      const gap = 18;
+      const width = cards[0].getBoundingClientRect().width + gap;
+      track.style.transform = `translateX(-${index * width}px)`;
+      status.textContent = visible === 3 ? 'Showing all reviews' : `Showing review ${index + 1} of ${cards.length}`;
+    }
+    function advance() { moveCarousel(index >= Math.max(0, cards.length - visibleCards()) ? 0 : index + 1); }
+    function startAutoPlay() { timer = window.setInterval(advance, 1700); }
+    function stopAutoPlay() { window.clearInterval(timer); }
+    document.querySelector('.carousel-viewport').addEventListener('mouseenter', stopAutoPlay);
+    document.querySelector('.carousel-viewport').addEventListener('mouseleave', startAutoPlay);
+    document.querySelector('.carousel-viewport').addEventListener('focusin', stopAutoPlay);
+    document.querySelector('.carousel-viewport').addEventListener('focusout', startAutoPlay);
+    window.addEventListener('resize', () => moveCarousel(index));
+    moveCarousel(0);
+    startAutoPlay();
+  </script>
+</body>
+</html>
