@@ -52,28 +52,12 @@ const joinModalClose = document.querySelector(".join-modal-close");
 const joinButtons = document.querySelectorAll('[data-join-trigger="true"]');
 const joinForm = document.querySelector(".join-form");
 const joinSuccess = document.querySelector(".join-success");
-const welcomeModal = document.querySelector(".welcome-modal");
-const welcomeJoinButton = document.querySelector(".welcome-join-button");
-const welcomeCloseButton = document.querySelector(".welcome-modal-close");
-
 const openJoinModal = () => {
   if (!joinModal) return;
   joinModal.classList.add("is-open");
   document.body.classList.add("menu-open");
   const firstField = joinModal.querySelector("input[name='name']");
   if (firstField) firstField.focus();
-};
-
-const openWelcomeModal = () => {
-  if (!welcomeModal) return;
-  welcomeModal.classList.add("is-open");
-  document.body.classList.add("menu-open");
-};
-
-const closeWelcomeModal = () => {
-  if (!welcomeModal) return;
-  welcomeModal.classList.remove("is-open");
-  document.body.classList.remove("menu-open");
 };
 
 const closeJoinModal = () => {
@@ -93,33 +77,9 @@ if (joinModalClose) {
   joinModalClose.addEventListener("click", closeJoinModal);
 }
 
-if (welcomeCloseButton) {
-  welcomeCloseButton.addEventListener("click", () => {
-    closeWelcomeModal();
-    localStorage.setItem("horra-welcome-dismissed", "true");
-  });
-}
-
-if (welcomeJoinButton) {
-  welcomeJoinButton.addEventListener("click", () => {
-    closeWelcomeModal();
-    localStorage.setItem("horra-welcome-dismissed", "true");
-    openJoinModal();
-  });
-}
-
 if (joinModal) {
   joinModal.addEventListener("click", (event) => {
     if (event.target === joinModal) closeJoinModal();
-  });
-}
-
-if (welcomeModal) {
-  welcomeModal.addEventListener("click", (event) => {
-    if (event.target === welcomeModal) {
-      closeWelcomeModal();
-      localStorage.setItem("horra-welcome-dismissed", "true");
-    }
   });
 }
 
@@ -128,16 +88,8 @@ document.addEventListener("keydown", (event) => {
     if (joinModal && joinModal.classList.contains("is-open")) {
       closeJoinModal();
     }
-    if (welcomeModal && welcomeModal.classList.contains("is-open")) {
-      closeWelcomeModal();
-      localStorage.setItem("horra-welcome-dismissed", "true");
-    }
   }
 });
-
-if (!localStorage.getItem("horra-welcome-dismissed")) {
-  setTimeout(() => openWelcomeModal(), 700);
-}
 
 if (joinForm) {
   joinForm.addEventListener("submit", (event) => {

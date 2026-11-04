@@ -33,7 +33,7 @@ Then visit:
 ## Before production
 1. Replace `https://horraapp.com/` if the final domain differs.
 2. Verify legal entity, contact emails and legal text with your final business/legal information.
-3. Connect the Get Started CTA to the actual Horra app.
+3. The homepage Get Started and Try Horra CTAs link to the Horra Google Play listing.
 4. Add your official favicon/app icon if available.
 5. If you have approved real product screenshots, they can replace the CSS product frames without changing the overall layout.
 
