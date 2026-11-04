@@ -3,6 +3,8 @@ const mobileMenu = document.querySelector(".mobile-menu");
 const announcementBar = document.querySelector(".announcement-bar");
 const announcementClose = document.querySelector(".announcement-close");
 const siteHeader = document.querySelector(".site-header");
+const downloadPromo = document.querySelector(".download-promo");
+const downloadPromoClose = document.querySelector(".download-promo-close");
 
 const setMenuState = (open) => {
   if (!menuButton || !mobileMenu) return;
@@ -41,6 +43,32 @@ if (siteHeader) {
   const updateHeader = () => siteHeader.classList.toggle("scrolled", window.scrollY > 12);
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
+}
+
+if (downloadPromo && downloadPromoClose) {
+  const closeDownloadPromo = () => {
+    downloadPromo.classList.remove("is-open");
+    downloadPromo.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("promo-open");
+  };
+
+  downloadPromoClose.addEventListener("click", closeDownloadPromo);
+  downloadPromo.addEventListener("click", (event) => {
+    if (event.target === downloadPromo) closeDownloadPromo();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && downloadPromo.classList.contains("is-open")) {
+      closeDownloadPromo();
+    }
+  });
+
+  window.setTimeout(() => {
+    downloadPromo.classList.add("is-open");
+    downloadPromo.setAttribute("aria-hidden", "false");
+    document.body.classList.add("promo-open");
+    downloadPromoClose.focus();
+  }, 11000);
 }
 
 const revealTargets = document.querySelectorAll(
