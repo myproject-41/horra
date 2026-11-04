@@ -234,6 +234,8 @@ em{font-style:italic;font-weight:500}
 .call-us-float svg{width:21px;height:21px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .call-us-float:hover,.call-us-float:focus-visible{transform:translateY(-3px);box-shadow:0 16px 36px rgba(67,39,30,.3)}
 .call-us-float:focus-visible{outline:3px solid rgba(239,90,101,.35);outline-offset:4px}
+.product-showcase{display:flex;justify-content:center}
+.experience-image{display:block;width:min(100%,520px);height:auto;border-radius:26px;box-shadow:0 24px 70px rgba(67,39,30,.14)}
 @media(max-width:600px){.call-us-float{left:14px;bottom:14px;padding:12px 15px;font-size:.8rem}}
 @media(prefers-reduced-motion:reduce){.call-us-float{transition:none}}
 @media(max-width:600px){
