@@ -1,17 +1,24 @@
 .legal-main{padding:100px 0 120px}.legal-wrap{max-width:800px}
 .legal-document{max-width:800px;margin:0 auto;padding:clamp(24px,5vw,64px);background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 12px 36px rgba(35,24,20,.06)}
-.legal-document h2{scroll-margin-top:24px}
-.legal-document h3{font-size:1.15rem;margin:30px 0 10px}
+.legal-document h2{scroll-margin-top:24px;line-height:1.25}
+.legal-document h3{font-size:1.15rem;line-height:1.4;margin:30px 0 10px}
 .legal-document p,.legal-document li{line-height:1.75;overflow-wrap:anywhere;white-space:normal}
+.legal-document p{margin:0 0 1.15rem}
 .legal-document ol,.legal-document ul{margin:0 0 1.25rem;padding-left:1.7rem}
 .legal-document ol.legal-alpha{list-style:lower-alpha}
 .legal-document li{margin:0 0 .45rem;padding-left:.2rem}
 .legal-document li::marker{color:#231914;font-weight:700}
+.legal-document strong{color:#34231e}
 .legal-document a{color:#1b4bff;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 .legal-document a:hover,.legal-document a:focus-visible{color:#0f2d9f}
-.legal-wrap h1{font-size:clamp(3rem,7vw,5.3rem);margin-bottom:15px}
+.legal-table-wrap{max-width:100%;margin:0 0 1.5rem;overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.legal-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.legal-table th,.legal-table td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.55}
+.legal-table th{background:var(--cream-2);color:#34231e;font-weight:700}
+.legal-table tr:last-child td{border-bottom:0}
+.legal-wrap h1{font-size:clamp(3rem,7vw,5.3rem);line-height:1.02;margin-bottom:15px}
 .legal-wrap .updated{color:var(--muted);font-size:.8rem;margin-bottom:48px}
-.legal-wrap h2{font-size:1.65rem;margin-top:48px;margin-bottom:12px}
+.legal-wrap h2{font-size:1.65rem;line-height:1.25;margin-top:48px;margin-bottom:12px}
 .legal-wrap p,.legal-wrap li{color:#645a56;font-size:.92rem}
 .legal-wrap ul{padding-left:22px}.legal-callout{padding:24px;background:var(--cream-2);border:1px solid var(--line);border-radius:20px;margin:30px 0}
-@media(max-width:600px){.legal-main{padding:70px 0 90px}.legal-document{padding:24px 20px}}
+@media(max-width:600px){.legal-main{padding:70px 0 90px}.legal-document{padding:24px 20px}.legal-wrap h1{font-size:clamp(2.5rem,12vw,4rem)}.legal-wrap h2{font-size:1.4rem}.legal-document h3{font-size:1.05rem}.legal-table{min-width:620px}}
